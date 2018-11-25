@@ -1,0 +1,10 @@
+﻿<!--Lab3-->
+@model IEnumerable<_70322_Yushkevich.Models.MenuItem>
+<ul>
+	@foreach (var item in Model)
+	{
+		<li>
+			@Html.ActionLink(item.Name, item.Action, item.Controller)
+		</li>
+	}
+</ul>

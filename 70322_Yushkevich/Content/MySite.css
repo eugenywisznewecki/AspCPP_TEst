@@ -1,0 +1,184 @@
+﻿.header-strip {
+    background-color: #222222 ;
+    padding: 5px ;
+    border-bottom: 3px solid #428bca ;
+    text-shadow: 0px 0px 1px #428bca, 0px 0px 5px #428bca, 0px 0px 7px #428bca ;
+}
+
+.header-strip a, 
+.header-strip span {
+    color: #89beff ;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.navbar-inverse {
+    border: hidden;
+}
+
+.logo, 
+.logotype {
+    color: #ff6a00 !important;
+    float: left;
+    padding-left: 20px;
+	padding-top:5px;
+    text-decoration: none !important;
+}
+
+.navbar-brand {
+    color: #ff6a00 ;
+}
+
+.logosbuttons {
+    float: right;
+    text-align: right;
+    text-shadow: none;
+    padding-top: 10px ; 
+}
+
+.labtitle {
+    color: #428bca ;
+    padding-left: 17px;
+    font-family: Garamond;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.leftbar {
+    padding-top: 27px;
+}
+
+
+.LabTitleStyle {
+	color: #314894;
+	font-family: 'Monotype Corsiva';
+	text-decoration: solid;
+}
+
+.row {
+	color:#1d6bae ;
+}
+
+.main-body {
+    border-bottom: 3px solid #428bca ;
+    min-height: calc(100vh - 190px);
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 20%;
+    border: 1px solid #222222;
+}
+
+.twitter {
+    background: url(../Images/twitter.png) no-repeat;
+}
+
+.facebook {
+    background: url(../Images/fb.png) no-repeat;
+}
+
+.vk {
+    background: url(../Images/vk.png) no-repeat;
+}
+
+.footer-strip {
+    background-color: #222222;
+    padding: 5px;
+    color: #428bca;
+}
+
+.footer-strip li {
+    list-style-type: none;
+}
+
+.footer-strip a {
+    color: #999999;
+}
+
+.footer-strip h6 {
+    color: #999999;
+    border-bottom: dotted 1px #999999;
+}
+
+.item-row {
+    margin: 5px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.item-name {
+    min-height: 65px; /*110*/
+}
+
+.item-description {
+    min-height: 50px;
+    border-top: solid 1px #dddddd;
+    border-bottom: solid 1px #dddddd
+}
+
+.footer-margin h6 {
+    margin-bottom: 23px;
+}
+
+
+
+
+/*Подсветка+*/
+.logotype {
+	font-size: 30px;
+	color: #ff6a00;
+	font-family: 'Monotype Corsiva';
+	text-shadow: 0 10px 10px rgba(0,200,255,.10), 0 10px 10px rgba(0,255,255,.20), 0 20px 20px rgba(0,255,255,.30), 0 20px 20px rgba(0,255,255,.30), 0 20px 20px rgba(0,255,255,.30);
+}
+
+    .logotype:hover {
+        animation: blur1 1s ease-out;
+
+        transition: all 0.3s ease;
+    }
+
+    @keyframes blur1 {
+        from {
+            text-shadow: 0px 0px 10px #428bca, 0px 0px 10px #428bca, 0px 0px 25px #428bca, 0px 0px 25px #428bca, 0px 0px 25px #428bca, 0px 0px 25px #428bca, 0px 0px 25px #428bca, 0px 0px 25px #428bca, 0px 0px 50px #428bca, 0px 0px 50px #428bca;
+        }
+}
+ /*Увеличение*/
+.logotype logo {
+    font-size: 24px;
+    transition: all 0.3s ease;
+    line-height: 32px;
+}
+
+.logotype:hover logo {
+    font-size: 26px;
+}
+
+@media (max-width:500px) {
+    .logotype, .logo:hover {
+        font-size: 36px;
+        line-height: 40px;
+    }
+
+        .logotype logo {
+            font-size: 18px;
+            letter-spacing: 2px;
+            line-height: 26px;
+        }
+}
+
+
+
+
+
+
+
+
+
+
+

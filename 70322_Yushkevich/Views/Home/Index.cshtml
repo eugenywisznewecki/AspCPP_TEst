@@ -1,0 +1,85 @@
+﻿	<!--Lab2-->
+@{											
+	ViewBag.Title = "Главная страница";
+	ViewBag.MyText = "Лабораторная работа №3";
+
+	SelectList Colors = new SelectList(Enum.GetValues(typeof(System.Drawing.KnownColor)));
+	ViewBag.Colors = Colors;
+	ViewBag.MyText2 = Request.QueryString["Colors"] ?? "Вывод ViewBag";
+
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<hr>
+<h2>Список</h2>
+
+<ol type="A">
+    <!--Lab2-->
+    @for (int i = 1; i < 5; i++)
+    {
+        <li>Элемент @i списка</li>
+    }
+</ol>
+
+<hr>
+
+<h2>Форма</h2>
+@{Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-horizontal" });}	<!--Lab2-->
+    @*<form class="form-horizontal" method="get">*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">	
+				@Html.DropDownList("Colors")						<!--Lab2-->
+            <div class="checkbox">
+				<label>@Html.CheckBox("cBox1")Чек-бокс 1</label>	<!--Lab2-->       
+            </div>
+            <div class="checkbox">
+				<label>@Html.CheckBox("cBox2")Чек-бокс 2</label>	<!--Lab2-->     
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <label class="radio-inline">
+                <label>@Html.RadioButton("rButton", 1, true) Радио 1</label>	<!--Lab2-->
+            </label>
+            <label class="radio-inline">
+                <label>@Html.RadioButton("rButton", 2, false) Радио 2</label>	<!--Lab2-->
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputLogin" class="col-md-2 control-label">Логин</label>
+        <div class="col-md-8">
+            @Html.TextBox("login", null, new {@class = "form-control", placeholder = "Введите логин"})	<!--Lab2-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-md-2 control-label">Пароль</label>
+        <div class="col-md-8">
+            @Html.Password("pass", null, new {@class = "form-control",placeholder = "Введите пароль"})	<!--Lab2-->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-success">Отправить</button>
+        </div>
+    </div>
+
+@*</form>*@
+
+@{Html.EndForm();}	<!--Lab2-->
+
+
+<!--Левая боковая панель-->
+<!--Lab3-->
+@section SidePanel
+{
+	<div class="alert-success">
+		<h4><i>Пример работы с секциями на странице шаблона</i></h4>
+	</div>
+}
+
