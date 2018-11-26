@@ -1,0 +1,42 @@
+﻿@model _70322_Yushkevich.Models.Cart
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ваша корзина</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Всего калорий</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GetItems())
+        {
+            <tr>
+                <td>@item.Dish.DishName</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Dish.Calories * item.Quantity)</td>
+
+
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Удалить", "DeleteFromCart", new { id = item.Dish.DishId, returnUlr = Request.Path })
+                    </div>
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("List", "Dish")" class="btn btn-default">Вернуться к меню</a>
+
+
+<div class="btn btn-default">
+        @Html.ActionLink("Очистить корзину", "ClearCart", new { returnUlr = Request.Path })
+    </div>

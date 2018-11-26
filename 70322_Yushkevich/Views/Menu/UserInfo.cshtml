@@ -1,15 +1,43 @@
-﻿<!--Lab3-->
+﻿@using System.Security.Claims   @*//*7*@
+
 <div class="nav navbar-left">
-	<a href=@Url.Action("Login","Account") class="navbar-link">
-		<span class="glyphicon glyphicon-user"></span>Войти
-	</a>
-	<a href=@Url.Action("Register","Account") class="navbar-link">
-		<span class="glyphicon glyphicon-plus-sign"></span>
-		Зарегистрироваться
-	</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        var identity = User.Identity as ClaimsIdentity;
+        var nick = identity.Claims
+        .Where(c => c.Type == "nick")
+        .Select(c => c.Value)
+        .SingleOrDefault();
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new
+        { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <span>Hello, @nick! </span>
+            <a href="javascript:document.getElementById('logoutForm').submit()">
+                <span class="glyphicon glyphicon-log-out"></span>Выйти
+            </a>
+        }
+    }
+    else
+    {
+
+        <!--Lab3-->
+        <div class="nav navbar-left">
+            <a href=@Url.Action("Login", "Account") class="navbar-link">
+                <span class="glyphicon glyphicon-user"></span>Войти
+            </a>
+            <a href=@Url.Action("Register", "Account") class="navbar-link">
+                <span class="glyphicon glyphicon-plus-sign"></span>Зарегистрироваться
+            </a>
+        </div>
+
+    }
 </div>
+
 <div class="nav navbar-right">
-	<a href="#">
-		0.00 руб. ( 0 )<span class="glyphicon glyphicon-shopping-cart"></span>
-	</a>
+    @Html.Action("CartSummary", "Cart")
+    @*<a href=@Url.Action("Index","Cart",new {returnUrl=Request.Path })>
+            0.00 руб. ( 0 )
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+        </a>*@
 </div>

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется следующим образом
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных с этой сборкой.
-[assembly: AssemblyTitle("70322_Yushkevich")]
+[assembly: AssemblyTitle("_70322_Yushkevich")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("70322_Yushkevich")]
+[assembly: AssemblyProduct("_70322_Yushkevich")]
 [assembly: AssemblyCopyright("© Microsoft, 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

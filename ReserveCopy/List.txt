@@ -1,0 +1,8 @@
+@model IEnumerable<_70321_2_Vasilenko.DAL.Entities.Dish>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+  

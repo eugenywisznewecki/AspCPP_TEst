@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>   <!--Lab2-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <!--Для исключения отображения иероглифов-->
+    <meta charset="utf-8" />
+    
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />   <!--Добавлено-->
+    <link href="~/Content/MySite.css" rel="stylesheet" />      <!--Добавлено-->
+</head>
+<body>
+
+    <!--Заголовок страницы-->
+    <div class="header-strip">
+        <!--Панель аутентификации-->
+        <div class="container">           
+                @Html.Action("UserInfo", "Menu")        
+        </div> <!--Панель аутентификации (конец)-->
+        <!-- Панель навигации-->
+        <div class="container">
+            <div class="navbar navbar-inverse" role="navigation">
+                <div class="logo">
+                    <a class="logotype" href="Vasilenko_V1.html"><logo>Василенко В.И.</logo></a>	<!--Lab2-->
+                </div>
+                <div class="logosbuttons">
+                   @Html.Action("Main", "Menu",
+				  new
+				  {
+					  c = Request.RequestContext.RouteData.Values["controller"],
+				  })
+                </div>
+            </div>
+        </div><!--Панель навигации (конец)-->
+    </div>
+    <!--Заголовок страницы(конец)-->
+    <!--Содержимое сайта -->
+    <div class="main-body">
+        <div class="container">
+            <div class="row">             
+				<div class="col-md-offset-3 col-md-5 ">
+					<h2><a class="LabTitleStyle">@ViewBag.MyText</a></h2>	<!--Lab2-->
+					<h2>@ViewBag.MyText2</h2>								<!--Lab2-->
+				</div>
+            </div>
+            <div class="row">
+                <!--Левая боковая панель-->
+                <div class="col-md-3">
+                    <div class="leftbar">
+						@Html.Action("Side", "Menu")
+                    </div>
+                </div>
+                <!--/Левая боковая панель (конец)-->
+                <!--Основная панель-->             
+                <div class="col-md-9">
+                    @RenderBody()   <!--Lab2-->
+                </div>
+                <!--/Основная панель (конец)-->
+            </div>
+        </div>
+    </div>
+    <!--Содержимое сайта (конец)-->
+    <!--Подвал страницы-->
+    <div class="footer-strip">
+        <div class="footer-strip">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h6>Kарта сайта</h6>                     
+                       @Html.Action("Map", "Menu")
+                    </div>
+                    <div class="col-md-3 col-md-offset-6">
+                        <h6>Социальные сети</h6>
+                        <a href="http://vk.com"
+                           class="social-icon vk"></a>
+                        <a href="http://twitter.com"
+                           class="social-icon twitter"></a>
+                        <a href="http://facebook.com"
+                           class="social-icon facebook"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Подвал страницы (конец)-->
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>		    <!--Добавлено-->
+    <script src="~/Scripts/bootstrap.js"></script>             <!--Добавлено-->
+</body>
+</html>

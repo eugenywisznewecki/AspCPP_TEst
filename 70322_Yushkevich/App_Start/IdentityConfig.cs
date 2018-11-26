@@ -11,7 +11,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
-//using 70322_Yushkevich.Models;
 using _70322_Yushkevich.DAL.Entities;
 using _70322_Yushkevich.DAL;
 
@@ -57,10 +56,10 @@ namespace _70322_Yushkevich
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                //RequireNonLetterOrDigit = true,
+                //RequireDigit = true,
+                //RequireLowercase = true,
+                //RequireUppercase = true,
             };
 
             // Настройка параметров блокировки по умолчанию
@@ -109,4 +108,21 @@ namespace _70322_Yushkevich
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
+
+    //*7
+    public class ApplicationRoleManager : RoleManager<IdentityRole>
+    {
+        public ApplicationRoleManager(RoleStore<IdentityRole>
+        store) : base(store)
+        { }
+        public static ApplicationRoleManager
+        Create(IdentityFactoryOptions<ApplicationRoleManager> options,
+        IOwinContext context)
+        {
+            return new ApplicationRoleManager(new
+            RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
+        }
+    }
+
 }

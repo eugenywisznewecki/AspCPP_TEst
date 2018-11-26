@@ -1,0 +1,71 @@
+﻿@model IEnumerable<_70322_Yushkevich.DAL.Entities.Dish>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Меню</h2>
+
+<p>
+    <div class="btn btn-default">
+        @Html.ActionLink("Добавить", "Create")
+    </div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DishName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calories)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.DishName)*@
+                @Html.ActionLink(@Html.DisplayFor(modelItem => item.DishName).ToString(), "Edit", new { id = item.DishId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calories)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupName)
+            </td>
+            <td>
+                <div class="btn btn-default">        
+                            @Html.ActionLink("Удалить", "Delete", new { id = item.DishId })              
+                    </div>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

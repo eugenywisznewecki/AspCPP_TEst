@@ -4,19 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using _70322_Yushkevich.DAL.Interfaces;
 
-//using 70322_Yushkevich.Models;
 using _70322_Yushkevich.DAL.Entities;
 using _70322_Yushkevich.Models;
+
 
 namespace _70322_Yushkevich.Controllers
 {
     public class MenuController : Controller
     {
         private List<MenuItem> items;
-      
-        public MenuController() 
+        private IRepository<Dish> repository;
+
+        
+        public MenuController(IRepository<Dish> rep)            
         {
+            repository = rep;
+
             items = new List<MenuItem>
             {
             new MenuItem{Name="Домой", Controller="Home", Action="Index", Active=string.Empty},
@@ -31,7 +36,9 @@ namespace _70322_Yushkevich.Controllers
         //}
         public PartialViewResult Main(string a = "Index", string c = "Home")
         {
-            items.First(m => m.Controller == c).Active = "active";
+            var item = items.Where(m => m.Controller == c).FirstOrDefault();
+            if(item!=null)
+                item.Active = "active";
             return PartialView(items);
         }
 
@@ -44,9 +51,15 @@ namespace _70322_Yushkevich.Controllers
             return PartialView();
         }
 
-        public string Side()
+        public PartialViewResult Side()
         {
-            return "<span> Боковая панель </span>";
+            var groups = repository
+                 .GetAll()
+                 .Select(dp => dp.GroupName)
+                 .Distinct();
+            return PartialView(groups);
+
+            //return "<span> Боковая панель </span>";
         }
 
         //public string Map()

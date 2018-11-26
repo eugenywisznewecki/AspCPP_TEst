@@ -15,8 +15,12 @@ namespace _70322_Yushkevich.DAL
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Здесь добавьте утверждения пользователя
+
+            userIdentity.AddClaim(new Claim("nick", this.NickName)); //*7
+
             return userIdentity;
         }
+        public string NickName { get; set; }    //*7
     }
 
     public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -32,6 +36,6 @@ namespace _70322_Yushkevich.DAL
             return new ApplicationDbContext();
         }
 
-        //public System.Data.Entity.DbSet<70322_Yushkevich.DAL.Entities.Dish> Dishes { get; set; }
+        //public System.Data.Entity.DbSet<_70322_Yushkevich.DAL.Entities.Dish> Dishes { get; set; }
     }
 }

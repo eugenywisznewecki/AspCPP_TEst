@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 using _70322_Yushkevich.DAL.Entities;
 using _70322_Yushkevich.DAL.Interfaces;
 using _70322_Yushkevich.Models;
-//using 70322_Yushkevich.Models;
-
-
 
 
 namespace _70322_Yushkevich.Controllers
@@ -35,13 +33,49 @@ namespace _70322_Yushkevich.Controllers
         }
 
         // GET: Dish
-        public ActionResult List(int page=1)
+        public ActionResult List(string group, int page = 1)
         {
-            var lst = repository.GetAll().OrderBy(d => d.Calories);
-            return View(PageListViewModel<Dish>.CreatePage(lst, page, pageSize));
+            var lst = repository.GetAll()
+                .Where(d => group == null
+                || d.GroupName.Equals(group))
+                .OrderBy(d => d.Calories);
+
+            var model = PageListViewModel<Dish>.CreatePage(lst, page, pageSize);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("ListPatial", model);
+            }
+            return View(model);
+
+        
+            //return View(PageListViewModel<Dish>.CreatePage(lst, page, pageSize));
 
             //return View(dishes);
             //return View(repository.GetAll());
         }
+
+
+        //public FileContentResult GetImage(int id)
+        //{
+        //    var dish = repository.Get(id);
+        //    if (dish != null)
+        //    {
+        //        return new FileContentResult(dish.Image, dish.MimeType);
+        //    }
+        //    else return null;
+        //}
+
+        public async Task<FileResult> GetImage(int id)
+        {
+            var dish = await repository.GetAsync(id);
+
+            if (dish != null)
+            {
+                return new FileContentResult(dish.Image, dish.MimeType);
+            }
+            else return null;
+        }
+
+
     }
 }
